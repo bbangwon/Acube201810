@@ -9,6 +9,10 @@ namespace ACube201810
     public class ACPlayer : MonoBehaviour
     {
 
+        const float yPos1LvHeight = 1.5f;
+        const float yPos2LvHeight = 2.5f;
+
+
         public enum ActionState
         {
             Stay,   //대기상태
@@ -24,6 +28,9 @@ namespace ACube201810
 
         float playerMoveSpeed = 1f;
 
+        Vector2Int currentPostion;
+        ACGameBoard gameBoard;
+
         // Use this for initialization
         void Start()
         {
@@ -36,41 +43,61 @@ namespace ACube201810
 
         }
 
-        public void SetPosition(Vector2 vPos)
+        public void Initialize(ACGameBoard gameBoard, Vector2Int intPosition)
+        {            
+            this.gameBoard = gameBoard;
+            currentPostion = intPosition;
+
+            MoveTo(currentPostion, true);
+        }
+
+        void MoveTo(Vector2Int intPosition, bool noDelay = false)
         {
-            transform.position = new Vector3(vPos.x, 1.5f, vPos.y);
+            if(gameBoard.IsMoveable(intPosition))
+            {
+                Vector2 vPos = gameBoard.IntPositionToVector2(intPosition);
+                float yPos = yPos1LvHeight; // 1층일때..
+                Vector3 destinationVec = new Vector3(vPos.x, yPos, vPos.y);
+
+                if (noDelay)
+                {
+                    transform.position = destinationVec;
+                    currentPostion = intPosition;
+                }
+                else
+                {
+                    currentActionState = ActionState.Moving;
+                    transform.DOMove(destinationVec, playerMoveSpeed).OnComplete(() => {
+                        currentActionState = ActionState.Stay;
+                        currentPostion = intPosition;
+                    });
+                }
+            }
         }
 
         public void MoveLeft()
-        {
-            currentActionState = ActionState.Moving;
-            transform.DOMoveX(-1, playerMoveSpeed).SetRelative().OnComplete(()=> {
-                currentActionState = ActionState.Stay;
-            });            
+        {            
+            MoveTo(new Vector2Int(currentPostion.x - 1, currentPostion.y));
         }
 
         public void MoveRight()
         {
-            currentActionState = ActionState.Moving;
-            transform.DOMoveX(1, playerMoveSpeed).SetRelative().OnComplete(() => {
-                currentActionState = ActionState.Stay;
-            });
+            MoveTo(new Vector2Int(currentPostion.x + 1, currentPostion.y));
         }
 
         public void MoveForward()
         {
-            currentActionState = ActionState.Moving;
-            transform.DOMoveZ(-1, playerMoveSpeed).SetRelative().OnComplete(() => {
-                currentActionState = ActionState.Stay;
-            });
+            MoveTo(new Vector2Int(currentPostion.x, currentPostion.y - 1));
         }
 
         public void MoveBackward()
         {
-            currentActionState = ActionState.Moving;
-            transform.DOMoveZ(1, playerMoveSpeed).SetRelative().OnComplete(() => {
-                currentActionState = ActionState.Stay;
-            });
+            MoveTo(new Vector2Int(currentPostion.x, currentPostion.y + 1));
+        }
+
+        public void Attack()
+        {
+            gameBoard.GetChainCube(currentPostion);
         }
 
 

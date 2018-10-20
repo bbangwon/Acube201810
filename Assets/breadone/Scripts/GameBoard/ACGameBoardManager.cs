@@ -23,7 +23,7 @@ namespace ACube201810
 
         }
 
-        public ACGameBoard CreateGameBoard(int boardCountX, int boardCountY)
+        public ACGameBoard CreateGameBoard()
         {
             return Instantiate<ACGameBoard>(gameBoardPrefabs);
         }

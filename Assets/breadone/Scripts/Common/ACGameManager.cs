@@ -16,12 +16,11 @@ namespace ACube201810
         // Use this for initialization
         void Start()
         {
-            gameBoard = ACGameBoardManager.Instance.CreateGameBoard(ACGameSetting.Instance.boardCountX, ACGameSetting.Instance.boardCountY);
-            gameBoard.CreateCubes(ACGameSetting.Instance.boardCountX, ACGameSetting.Instance.boardCountY);
+            gameBoard = ACGameBoardManager.Instance.CreateGameBoard();
+            gameBoard.CreateCubes(ACGameSetting.Instance.boardCount);
 
             player = ACPlayerManager.Instance.CreatePlayer();
-            var playerInitPos = gameBoard.PositionToVector2(ACGameSetting.Instance.playerInitPosX, ACGameSetting.Instance.playerInitPosY);
-            player.SetPosition(playerInitPos);
+            player.Initialize(gameBoard, ACGameSetting.Instance.playerInitPos);
         }
 
         // Update is called once per frame
@@ -48,6 +47,12 @@ namespace ACube201810
                 {
                     player.MoveBackward();
                 }
+
+                if(Input.GetKeyDown(KeyCode.Space))
+                {
+                    player.Attack();
+                }
+                
             }
 
         }      
