@@ -61,11 +61,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\breadone\Scripts\ACPlayer.cs" />
+    <Compile Include="Assets\breadone\Scripts\Common\ACGameManager.cs" />
+    <Compile Include="Assets\breadone\Scripts\Common\ACGameSetting.cs" />
     <Compile Include="Assets\breadone\Scripts\Common\Singleton.cs" />
     <Compile Include="Assets\breadone\Scripts\Cube\ACCube.cs" />
-    <Compile Include="Assets\breadone\Scripts\Manager\ACCubeManager.cs" />
-    <Compile Include="Assets\breadone\Scripts\Manager\ACGameManager.cs" />
+    <Compile Include="Assets\breadone\Scripts\Cube\ACCubeManager.cs" />
+    <Compile Include="Assets\breadone\Scripts\GameBoard\ACGameBoard.cs" />
+    <Compile Include="Assets\breadone\Scripts\GameBoard\ACGameBoardManager.cs" />
+    <Compile Include="Assets\breadone\Scripts\Player\ACPlayer.cs" />
+    <Compile Include="Assets\breadone\Scripts\Player\ACPlayerManager.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
     <Compile Include="Assets\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
@@ -294,12 +298,6 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>C:/Users/bbang/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>C:/Users/bbang/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
     <Reference Include="DemiLib">
       <HintPath>C:/workspace/unity/ACube201810/Assets/Demigiant/DemiLib/Core/DemiLib.dll</HintPath>
     </Reference>
@@ -308,6 +306,12 @@
     </Reference>
     <Reference Include="DOTweenPro">
       <HintPath>C:/workspace/unity/ACube201810/Assets/Demigiant/DOTweenPro/DOTweenPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>C:/Users/bbang/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StandardEvents">
+      <HintPath>C:/Users/bbang/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

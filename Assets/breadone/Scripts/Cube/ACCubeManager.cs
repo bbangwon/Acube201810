@@ -10,10 +10,11 @@ namespace ACube201810
     {        
         public ACCube[] cubePrefabs;
 
-        public ACCube GenRandCube()
+        public ACCube CreateRandomCube()
         {
             return Instantiate(cubePrefabs.OrderBy(r => Random.value).First());
         }
+        
     }
 }
 
