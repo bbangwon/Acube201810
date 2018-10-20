@@ -10,30 +10,33 @@ namespace ACube201810
         public int boardCountX;
         public int boardCountY;
 
-        int[,] board = null;
+        ACCube[,] board = null;
 
         [SerializeField]
         Transform gameBoard;
+
+        [SerializeField]
+        ACPlayer player;
 
         // Use this for initialization
         void Start()
         {
             GenBoard();
+            
         }
 
         // Update is called once per frame
         void Update()
         {
-        }
+        }      
 
-        
 
         public void GenBoard()
         {           
-            board = new int[boardCountX, boardCountY];
+            board = new ACCube[boardCountX, boardCountY];
 
-            float colStart = boardCountX / 2;
-            float rowStart = boardCountY / 2;
+            float colStart = boardCountX / 2.0f - 0.5f;
+            float rowStart = boardCountY / 2.0f - 0.5f;
 
             for (int row = 0; row < boardCountY; row++)
             {
@@ -43,8 +46,7 @@ namespace ACube201810
                     cube.transform.position = new Vector3(-colStart + col, 0, -rowStart + row);
                     cube.transform.parent = gameBoard.transform;
 
-
-
+                    board[col, row] = cube;
                 }
             }
         }
